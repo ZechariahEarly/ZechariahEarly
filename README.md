@@ -1,5 +1,4 @@
 - 👋 Hi, I’m @ZechariahEarly
-- 👀 I’m interested in Data Science and Machine Learning
 - 🌱 I’m currently studying at The University of Texas at Dallas for a BS in Computer Science
 - 📫 How to reach me: zxe200000@utdallas.edu
 
