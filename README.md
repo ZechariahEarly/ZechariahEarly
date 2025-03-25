@@ -1,6 +1,6 @@
 - 👋 Hi, I’m @ZechariahEarly
-- 🌱 I’m currently studying at The University of Texas at Dallas for a BS in Computer Science
-- 📫 How to reach me: zxe200000@utdallas.edu
+- 🌱 I’m currently trying to fix this bug!
+- 📫 How to reach me: zechearly@gmail.com
 
 <!---
 ZechariahEarly/ZechariahEarly is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
