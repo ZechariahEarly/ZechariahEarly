@@ -4,17 +4,16 @@ interface Props {
   role: string;
   dateRange: string;
   summary: string;
-  logoText: string;
+  logo: string;
 }
 
-const { company, role, dateRange, summary, logoText } = Astro.props;
+const { company, role, dateRange, summary, logo } = Astro.props;
 ---
 
 <div class="bg-bg-secondary border border-border rounded-lg p-6 glow-hover">
   <div class="flex items-start gap-4">
-    <!-- Logo placeholder -->
-    <div class="shrink-0 w-14 h-14 rounded-lg bg-bg-tertiary border border-border flex items-center justify-center">
-      <span class="font-heading text-sm font-bold text-text-secondary">{logoText}</span>
+    <div class="shrink-0 w-14 h-14 rounded-lg bg-white/90 border border-border flex items-center justify-center overflow-hidden">
+      <img src={logo} alt={`${company} logo`} class="w-10 h-10 object-contain" />
     </div>
 
     <div class="min-w-0">
