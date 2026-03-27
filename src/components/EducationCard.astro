@@ -1,0 +1,27 @@
+---
+interface Props {
+  school: string;
+  degree: string;
+  dateRange: string;
+  detail: string;
+  logoText: string;
+}
+
+const { school, degree, dateRange, detail, logoText } = Astro.props;
+---
+
+<div class="bg-bg-secondary border border-border rounded-lg p-6 glow-hover">
+  <div class="flex items-start gap-4">
+    <!-- Logo placeholder -->
+    <div class="shrink-0 w-14 h-14 rounded-lg bg-bg-tertiary border border-border flex items-center justify-center">
+      <span class="font-heading text-sm font-bold text-text-secondary">{logoText}</span>
+    </div>
+
+    <div class="min-w-0">
+      <h3 class="font-heading text-lg font-bold text-text-primary">{school}</h3>
+      <p class="text-text-secondary text-sm">{degree}</p>
+      <p class="font-mono text-xs text-text-secondary mt-1">{dateRange}</p>
+      {detail && <p class="text-accent-green text-xs font-mono mt-2">{detail}</p>}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+---
+interface Props {
+  tags: string[];
+}
+
+const { tags } = Astro.props;
+---
+
+<div class="flex flex-wrap gap-2 mb-8" id="tag-filter">
+  <button
+    class="tag-btn active px-3 py-1.5 rounded-full font-mono text-xs border border-border transition-all duration-200"
+    data-tag="all"
+  >
+    All
+  </button>
+  {tags.map((tag) => (
+    <button
+      class="tag-btn px-3 py-1.5 rounded-full font-mono text-xs border border-border transition-all duration-200"
+      data-tag={tag}
+    >
+      {tag}
+    </button>
+  ))}
+</div>
+
+<style>
+  .tag-btn {
+    background: var(--color-bg-tertiary);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+  }
+
+  .tag-btn:hover,
+  .tag-btn.active {
+    background: color-mix(in srgb, var(--color-accent-green) 15%, transparent);
+    border-color: var(--color-accent-green);
+    color: var(--color-accent-green);
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll('.tag-btn');
+  const posts = document.querySelectorAll('[data-tags]');
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const tag = btn.getAttribute('data-tag');
+
+      buttons.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      posts.forEach((post) => {
+        const postTags: string[] = JSON.parse(post.getAttribute('data-tags') || '[]');
+        if (tag === 'all' || postTags.includes(tag!)) {
+          (post as HTMLElement).style.display = '';
+        } else {
+          (post as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

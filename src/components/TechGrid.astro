@@ -1,0 +1,28 @@
+---
+import { techStack } from '../data/techStack';
+---
+
+<section class="py-20 fade-in-up">
+  <div class="mx-auto max-w-6xl px-6">
+    <h2 class="font-heading text-2xl md:text-3xl font-bold text-text-primary mb-12">
+      <span class="text-accent-green">~/</span>stack
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {Object.entries(techStack).map(([category, items]) => (
+        <div>
+          <h3 class="font-heading text-sm text-text-secondary mb-4 uppercase tracking-wider">
+            {category}
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            {items.map((item) => (
+              <span class="inline-block px-3 py-1.5 rounded-full bg-bg-tertiary border border-border font-mono text-xs text-text-secondary hover:border-accent-green hover:text-accent-green hover:shadow-[0_0_10px_rgba(0,255,136,0.08)] transition-all duration-200 cursor-default">
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

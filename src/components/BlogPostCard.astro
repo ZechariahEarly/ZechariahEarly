@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string;
+  date: Date;
+  description: string;
+  tags: string[];
+  slug: string;
+  readTime: number;
+}
+
+const { title, date, description, tags, slug, readTime } = Astro.props;
+
+const formattedDate = date.toISOString().split('T')[0];
+---
+
+<a href={`/blog/${slug}`} class="block" data-tags={JSON.stringify(tags)}>
+  <article class="bg-bg-secondary border border-border rounded-lg p-6 glow-hover">
+    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+      <h2 class="font-heading text-lg font-bold text-text-primary">{title}</h2>
+      <div class="flex items-center gap-3 shrink-0">
+        <time class="font-mono text-xs text-text-secondary">{formattedDate}</time>
+        <span class="font-mono text-xs text-text-secondary">{readTime} min</span>
+      </div>
+    </div>
+
+    <p class="text-text-secondary text-sm mb-4">{description}</p>
+
+    <div class="flex flex-wrap gap-2">
+      {tags.map((tag) => (
+        <span class="px-2 py-0.5 rounded-full bg-bg-tertiary border border-border font-mono text-xs text-text-secondary">
+          {tag}
+        </span>
+      ))}
+    </div>
+  </article>
+</a>

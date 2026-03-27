@@ -1,0 +1,55 @@
+---
+
+---
+
+<section class="relative min-h-[90vh] flex items-center justify-center bg-grid overflow-hidden">
+  <div class="mx-auto max-w-4xl px-6 text-center">
+    <h1 class="font-heading text-5xl md:text-7xl font-bold text-text-primary mb-6">
+      Zechariah Early
+    </h1>
+
+    <div class="mb-6">
+      <span class="font-mono text-accent-green text-lg md:text-xl">
+        <span class="text-text-secondary">&gt; </span>
+        <span id="typewriter"></span>
+        <span class="cursor-blink"></span>
+      </span>
+    </div>
+
+    <p class="text-text-secondary text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+      Senior Software Engineer. Georgia Tech MSCS. Building at the intersection of
+      distributed systems, ML, and financial infrastructure.
+    </p>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a
+        href="/projects"
+        class="inline-flex items-center gap-2 px-6 py-3 border border-accent-green text-accent-green font-heading text-sm rounded-lg hover:bg-accent-green/10 hover:shadow-[0_0_20px_rgba(0,255,136,0.15)] transition-all duration-300"
+      >
+        View Projects
+      </a>
+      <a
+        href="/blog"
+        class="inline-flex items-center gap-2 px-6 py-3 border border-border text-text-secondary font-heading text-sm rounded-lg hover:border-text-secondary hover:text-text-primary transition-all duration-300"
+      >
+        Read Blog
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const text = 'building systems that scale';
+  const el = document.getElementById('typewriter');
+  let i = 0;
+
+  function type() {
+    if (el && i <= text.length) {
+      el.textContent = text.slice(0, i);
+      i++;
+      setTimeout(type, 60);
+    }
+  }
+
+  setTimeout(type, 500);
+</script>

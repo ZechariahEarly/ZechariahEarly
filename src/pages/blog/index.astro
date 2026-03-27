@@ -1,0 +1,54 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import BlogPostCard from '../../components/BlogPostCard.astro';
+import TagFilter from '../../components/TagFilter.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// Compute read time for each post
+const postsWithMeta = posts.map((post) => ({
+  ...post,
+  readTime: Math.max(1, Math.ceil((post.body?.split(/\s+/).length || 0) / 200)),
+}));
+
+// Collect all unique tags
+const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
+---
+
+<PageLayout
+  title="Blog | Zechariah Early"
+  description="Thoughts on distributed systems, ML in production, and building software at scale."
+>
+  <section class="py-20">
+    <div class="mx-auto max-w-4xl px-6">
+      <h1 class="font-heading text-3xl md:text-4xl font-bold text-text-primary mb-4">
+        <span class="text-accent-green">$</span> cat ~/blog/*
+      </h1>
+      <p class="text-text-secondary mb-8">
+        Writing about systems, software, and the things I learn along the way.
+      </p>
+
+      <TagFilter tags={allTags} />
+
+      <div class="space-y-4" id="blog-posts">
+        {postsWithMeta.map((post) => (
+          <BlogPostCard
+            title={post.data.title}
+            date={post.data.date}
+            description={post.data.description}
+            tags={post.data.tags}
+            slug={post.id}
+            readTime={post.readTime}
+          />
+        ))}
+      </div>
+
+      {posts.length === 0 && (
+        <p class="text-text-secondary font-mono text-sm">No posts yet. Check back soon.</p>
+      )}
+    </div>
+  </section>
+</PageLayout>

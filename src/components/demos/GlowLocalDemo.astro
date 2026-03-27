@@ -1,0 +1,47 @@
+---
+
+---
+
+<div class="border-t border-border p-6 bg-bg-tertiary/50">
+  <p class="font-mono text-xs text-text-secondary mb-4">// postcard preview</p>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <!-- Front -->
+    <div class="bg-white rounded-lg p-4 aspect-[3/2] flex flex-col justify-between relative overflow-hidden">
+      <div>
+        <div class="text-xs font-mono text-gray-400 mb-2">FRONT</div>
+        <p class="text-gray-800 font-bold text-sm">{"{{spa_name}}"}</p>
+        <p class="text-gray-600 text-xs mt-1">Exclusive Offer Inside!</p>
+        <p class="text-gray-500 text-[10px] mt-2">Get 20% off your first {"{{treatment_type}}"} session.</p>
+      </div>
+      <div class="flex items-end justify-between">
+        <p class="text-[10px] text-gray-400">Powered by GlowLocal</p>
+        <!-- QR placeholder -->
+        <div class="w-12 h-12 grid grid-cols-4 grid-rows-4 gap-px">
+          {Array.from({ length: 16 }).map((_, i) => (
+            <div class:list={['rounded-[1px]', [0,1,2,3,4,7,8,11,12,13,14,15].includes(i) ? 'bg-gray-800' : 'bg-gray-200']} />
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Back -->
+    <div class="bg-white rounded-lg p-4 aspect-[3/2] flex flex-col justify-between">
+      <div>
+        <div class="text-xs font-mono text-gray-400 mb-2">BACK</div>
+        <div class="space-y-1.5">
+          <div class="h-2 bg-gray-200 rounded w-3/4"></div>
+          <div class="h-2 bg-gray-200 rounded w-1/2"></div>
+          <div class="h-2 bg-gray-200 rounded w-2/3"></div>
+        </div>
+      </div>
+      <div class="border-t border-gray-200 pt-3 mt-3">
+        <div class="text-[10px] text-gray-400 font-mono space-y-0.5">
+          <p>{"{{recipient_name}}"}</p>
+          <p>{"{{address_line_1}}"}</p>
+          <p>{"{{city}}"}, {"{{state}}"} {"{{zip}}"}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

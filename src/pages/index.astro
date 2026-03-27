@@ -1,0 +1,61 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import ExperienceCard from '../components/ExperienceCard.astro';
+import EducationCard from '../components/EducationCard.astro';
+import TechGrid from '../components/TechGrid.astro';
+import { experiences } from '../data/experience';
+import { education, certifications } from '../data/education';
+---
+
+<PageLayout
+  title="Zechariah Early | Senior Software Engineer"
+  description="Senior Software Engineer at Capital One. Georgia Tech MSCS. Building at the intersection of distributed systems, ML, and financial infrastructure."
+>
+  <Hero />
+
+  <About />
+
+  <!-- Experience -->
+  <section class="py-20 fade-in-up">
+    <div class="mx-auto max-w-6xl px-6">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold text-text-primary mb-12">
+        <span class="text-accent-green">~/</span>experience
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {experiences.map((exp) => (
+          <ExperienceCard {...exp} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section class="py-20 fade-in-up">
+    <div class="mx-auto max-w-6xl px-6">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold text-text-primary mb-12">
+        <span class="text-accent-green">~/</span>education
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {education.map((edu) => (
+          <EducationCard {...edu} />
+        ))}
+      </div>
+      {certifications.length > 0 && (
+        <div class="mt-6 flex flex-wrap gap-3">
+          {certifications.map((cert) => (
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-bg-secondary border border-border font-mono text-sm text-accent-orange">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              {cert}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <TechGrid />
+</PageLayout>

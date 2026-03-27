@@ -1,0 +1,99 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import ShareButton from '../components/ShareButton.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  tags: string[];
+  readTime: number;
+  headings: { depth: number; slug: string; text: string }[];
+  prevPost?: { slug: string; title: string } | null;
+  nextPost?: { slug: string; title: string } | null;
+}
+
+const { title, description, date, tags, readTime, headings, prevPost, nextPost } = Astro.props;
+
+const formattedDate = date.toISOString().split('T')[0];
+const postUrl = Astro.url.href;
+---
+
+<BaseLayout
+  title={`${title} | Zechariah Early`}
+  description={description}
+  ogType="article"
+>
+  <Header />
+
+  <article class="py-12">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="flex gap-12">
+        <!-- Main content -->
+        <div class="min-w-0 max-w-3xl flex-1">
+          <!-- Post header -->
+          <header class="mb-12">
+            <h1 class="font-heading text-3xl md:text-4xl font-bold text-text-primary mb-4">
+              {title}
+            </h1>
+            <div class="flex flex-wrap items-center gap-4 text-text-secondary">
+              <time class="font-mono text-sm">{formattedDate}</time>
+              <span class="font-mono text-sm">{readTime} min read</span>
+              <div class="flex flex-wrap gap-2">
+                {tags.map((tag) => (
+                  <a
+                    href={`/blog?tag=${tag}`}
+                    class="px-2 py-0.5 rounded-full bg-bg-tertiary border border-border font-mono text-xs text-text-secondary hover:text-accent-green hover:border-accent-green transition-colors duration-200"
+                  >
+                    {tag}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </header>
+
+          <!-- MDX content -->
+          <div class="prose prose-invert max-w-none">
+            <slot />
+          </div>
+
+          <!-- Share + nav -->
+          <footer class="mt-16 pt-8 border-t border-border space-y-8">
+            <ShareButton title={title} url={postUrl} />
+
+            <nav class="flex justify-between gap-4">
+              {prevPost ? (
+                <a
+                  href={`/blog/${prevPost.slug}`}
+                  class="flex flex-col gap-1 text-text-secondary hover:text-accent-blue transition-colors duration-200"
+                >
+                  <span class="font-mono text-xs">&larr; Previous</span>
+                  <span class="text-sm">{prevPost.title}</span>
+                </a>
+              ) : <div />}
+              {nextPost ? (
+                <a
+                  href={`/blog/${nextPost.slug}`}
+                  class="flex flex-col gap-1 text-right text-text-secondary hover:text-accent-blue transition-colors duration-200"
+                >
+                  <span class="font-mono text-xs">Next &rarr;</span>
+                  <span class="text-sm">{nextPost.title}</span>
+                </a>
+              ) : <div />}
+            </nav>
+          </footer>
+        </div>
+
+        <!-- TOC sidebar -->
+        <aside class="hidden lg:block w-64 shrink-0">
+          <TableOfContents headings={headings} />
+        </aside>
+      </div>
+    </div>
+  </article>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,40 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import GlowLocalDemo from '../components/demos/GlowLocalDemo.astro';
+import SwiftBitsDemo from '../components/demos/SwiftBitsDemo.astro';
+import { projects } from '../data/projects';
+---
+
+<PageLayout
+  title="Projects | Zechariah Early"
+  description="Side projects and open source work by Zechariah Early — GlowLocal, SwiftBits, and more."
+>
+  <section class="py-20">
+    <div class="mx-auto max-w-4xl px-6">
+      <h1 class="font-heading text-3xl md:text-4xl font-bold text-text-primary mb-4">
+        <span class="text-accent-green">~/</span>projects
+      </h1>
+      <p class="text-text-secondary mb-12 max-w-2xl">
+        Things I'm building outside of work. Each project includes a live demo snippet below.
+      </p>
+
+      <div class="space-y-8">
+        {projects.map((project) => (
+          <div class="fade-in-up">
+            <ProjectCard
+              name={project.name}
+              description={project.description}
+              techPills={project.techPills}
+              githubUrl={project.githubUrl}
+              liveUrl={project.liveUrl}
+            >
+              {project.id === 'glowlocal' && <GlowLocalDemo />}
+              {project.id === 'swiftbits' && <SwiftBitsDemo />}
+            </ProjectCard>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</PageLayout>
