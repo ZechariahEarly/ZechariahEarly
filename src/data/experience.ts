@@ -18,14 +18,14 @@ export const experiences: Experience[] = [
     company: 'JPMorgan Chase',
     role: 'Software Engineer II',
     dateRange: '2023 – 2025',
-    summary: 'Investment banking technology & trade processing',
+    summary: 'Fraud prevention technology & machine learning modeling',
     logo: '/images/logos/J_P_Morgan_Logo.svg',
   },
   {
     company: 'Citi',
     role: 'Software Engineer',
     dateRange: '2022 – 2023',
-    summary: 'Risk analytics & financial data platforms',
+    summary: 'Foundational platforms & customer products',
     logo: '/images/logos/Citi.svg',
   },
 ];
